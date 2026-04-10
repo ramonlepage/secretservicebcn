@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secret Service Barcelona</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;700;900&family=Barlow:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --red:#e8281e;
+  --cream:#f0e8d8;
+  --black:#0d0d0d;
+  --mid:#1a1a1a;
+  --gold:#f5c518;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--black);
+  color:var(--cream);
+  font-family:'Barlow',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+  cursor:crosshair;
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1rem 2.5rem;z-index:200;
+  background:rgba(13,13,13,0.96);
+  border-bottom:1px solid rgba(240,232,216,0.07);
+  backdrop-filter:blur(10px);
+}
+.nav-logo{display:flex;align-items:center;gap:0.8rem}
+.nav-logo img{
+  width:36px;height:36px;
+  border-radius:50%;
+  object-fit:cover;
+  filter:contrast(1.1);
+}
+.nav-logo-text{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.2rem;letter-spacing:0.15em;color:var(--cream);
+}
+.nav-logo-text span{color:var(--red)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.72rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(240,232,216,0.45);text-decoration:none;transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--red)}
+.nav-badge{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.6rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(240,232,216,0.3);border:1px solid rgba(240,232,216,0.12);
+  padding:0.25rem 0.7rem;
+}
+
+.hero{
+  min-height:100vh;
+  display:grid;grid-template-rows:1fr auto;
+  padding:4.5rem 2.5rem 2.5rem;
+  position:relative;overflow:hidden;
+}
+.hero-bg-word{
+  position:absolute;bottom:-1rem;left:-0.03em;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(9rem,26vw,21rem);
+  color:rgba(240,232,216,0.028);
+  line-height:1;pointer-events:none;
+  letter-spacing:-0.02em;white-space:nowrap;
+}
+.hero-logo-big{
+  position:absolute;top:50%;right:5%;
+  transform:translateY(-55%);
+  width:clamp(200px,28vw,380px);
+  opacity:0.12;
+  pointer-events:none;
+  filter:contrast(1.2) brightness(1.1);
+}
+.hero-content{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:3rem}
+.hero-eyebrow{
+  display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;
+  opacity:0;animation:fadeIn 0.7s ease 0.2s forwards;
+}
+.hero-eyebrow-line{width:28px;height:1px;background:var(--red)}
+.hero-eyebrow span{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.68rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--red);
+}
+.hero-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,17vw,13.5rem);
+  line-height:0.88;letter-spacing:-0.01em;
+  opacity:0;animation:slideUp 0.9s ease 0.3s forwards;
+}
+.hero-title .outline{-webkit-text-stroke:1.5px var(--cream);color:transparent}
+.hero-title .red{color:var(--red)}
+.hero-bottom{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  padding-top:2rem;border-top:1px solid rgba(240,232,216,0.08);
+  opacity:0;animation:fadeIn 0.7s ease 0.9s forwards;
+}
+.hero-desc{
+  max-width:320px;font-size:0.9rem;line-height:1.75;
+  color:rgba(240,232,216,0.5);
+}
+.hero-desc strong{color:var(--cream);font-weight:400}
+.hero-stats{display:flex;gap:2.5rem}
+.stat-num{
+  font-family:'Bebas Neue',sans-serif;font-size:2.3rem;
+  color:var(--red);line-height:1;
+}
+.stat-label{
+  font-family:'Barlow Condensed',sans-serif;font-size:0.6rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(240,232,216,0.35);margin-top:0.2rem;
+}
+.hero-cta{
+  display:flex;align-items:center;cursor:pointer;
+  background:none;border:none;
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:0.12em;
+}
+.cta-text{
+  background:var(--red);color:#fff;
+  padding:1rem 2rem;transition:background 0.2s;
+}
+.cta-text:hover{background:#c41f16}
+.cta-arrow{background:var(--cream);color:var(--black);padding:1rem 1.2rem;font-size:1.3rem}
+
+.ticker{
+  background:var(--red);padding:0.75rem 0;
+  overflow:hidden;white-space:nowrap;
+}
+.ticker-track{display:inline-flex;animation:ticker 22s linear infinite}
+.tick{
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;
+  letter-spacing:0.2em;color:#fff;padding:0 2rem;
+}
+.tick-dot{color:rgba(255,255,255,0.35);padding:0 0.4rem}
+
+.manifesto{
+  max-width:860px;
+  border-left:3px solid var(--red);
+  margin:7rem 2.5rem;
+  padding-left:2rem;
+}
+.section-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.62rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1.8rem;
+}
+.manifesto-text{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.2rem,5.5vw,4.8rem);
+  line-height:1.05;color:var(--cream);
+}
+.manifesto-text .dim{color:rgba(240,232,216,0.22)}
+
+.horario{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--mid);
+  border-top:1px solid rgba(240,232,216,0.07);
+  border-bottom:1px solid rgba(240,232,216,0.07);
+  padding:2rem 2.5rem;
+  margin:0 0 7rem;
+}
+.horario-item{
+  display:flex;flex-direction:column;gap:0.3rem;
+  border-right:1px solid rgba(240,232,216,0.08);
+  padding-right:3rem;
+}
+.horario-item:last-child{border-right:none;padding-right:0}
+.horario-key{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:rgba(240,232,216,0.35);
+}
+.horario-val{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.6rem;letter-spacing:0.05em;color:var(--cream);
+}
+.horario-val .accent{color:var(--red)}
+.horario-dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--red);display:inline-block;margin-right:0.5rem;
+  animation:blink 2s ease infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+.pillars{padding:0 0 7rem}
+.pillars-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  border-top:1px solid rgba(240,232,216,0.08);
+}
+.pillar{
+  padding:3rem 2.5rem;
+  border-right:1px solid rgba(240,232,216,0.08);
+  transition:background 0.35s;
+}
+.pillar:last-child{border-right:none}
+.pillar:hover{background:var(--mid)}
+.pillar-num{
+  font-family:'Bebas Neue',sans-serif;font-size:3.8rem;
+  color:rgba(232,40,30,0.18);line-height:1;margin-bottom:1.5rem;
+}
+.pillar h3{
+  font-family:'Bebas Neue',sans-serif;font-size:1.7rem;
+  letter-spacing:0.04em;color:var(--cream);margin-bottom:0.8rem;
+}
+.pillar p{font-size:0.83rem;line-height:1.85;color:rgba(240,232,216,0.42)}
+
+.eventos{padding:0 2.5rem 7rem}
+.eventos-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3rem;
+}
+.eventos-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,6vw,5rem);line-height:0.95;
+}
+.eventos-title .outline{-webkit-text-stroke:1px var(--cream);color:transparent}
+.eventos-ig{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(240,232,216,0.4);text-decoration:none;
+  border-bottom:1px solid rgba(240,232,216,0.2);padding-bottom:2px;
+  transition:color 0.2s,border-color 0.2s;
+}
+.eventos-ig:hover{color:var(--red);border-color:var(--red)}
+.eventos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(240,232,216,0.07)}
+.evento{
+  background:var(--black);padding:2.5rem;
+  display:flex;flex-direction:column;justify-content:space-between;
+  min-height:280px;transition:background 0.35s;
+  position:relative;overflow:hidden;
+}
+.evento::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:0;background:var(--red);
+  transition:height 0.4s ease;
+}
+.evento:hover::before{height:100%}
+.evento:hover{background:var(--mid)}
+.evento-tag{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.58rem;letter-spacing:0.3em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1.5rem;
+}
+.evento-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;line-height:1;color:var(--cream);margin-bottom:1rem;
+}
+.evento-desc{
+  font-size:0.8rem;line-height:1.75;
+  color:rgba(240,232,216,0.4);flex:1;
+}
+.evento-footer{
+  margin-top:2rem;padding-top:1.2rem;
+  border-top:1px solid rgba(240,232,216,0.08);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(240,232,216,0.25);
+}
+
+.location{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:55vh;
+  border-top:1px solid rgba(240,232,216,0.08);
+}
+.location-info{
+  padding:5rem 2.5rem;display:flex;flex-direction:column;justify-content:center;
+  background:var(--mid);
+}
+.location-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,5.5vw,5rem);line-height:0.95;margin-bottom:2.5rem;
+}
+.location-address{
+  font-family:'Barlow Condensed',sans-serif;font-size:1rem;
+  letter-spacing:0.05em;color:rgba(240,232,216,0.45);line-height:2;
+  border-top:1px solid rgba(240,232,216,0.1);padding-top:2rem;margin-top:1rem;
+}
+.location-address strong{
+  display:block;color:var(--cream);font-size:1.1rem;margin-bottom:0.2rem;
+}
+.info-pills{display:flex;gap:0.8rem;flex-wrap:wrap;margin-top:1.5rem}
+.pill{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  border:1px solid rgba(240,232,216,0.15);
+  padding:0.4rem 1rem;color:rgba(240,232,216,0.45);
+}
+.pill.hi{border-color:var(--red);color:var(--red)}
+.map-wrap{position:relative;overflow:hidden}
+.map-wrap iframe{
+  width:100%;height:100%;border:0;
+  filter:grayscale(1) brightness(0.28) contrast(1.5) sepia(0.15);
+  transition:filter 0.5s;
+}
+.map-wrap:hover iframe{filter:grayscale(0.85) brightness(0.45) contrast(1.2)}
+.map-tint{
+  position:absolute;inset:0;
+  background:rgba(232,40,30,0.06);pointer-events:none;
+  transition:opacity 0.5s;
+}
+.map-wrap:hover .map-tint{opacity:0}
+
+/* FORM */
+.form-section{
+  background:var(--cream);padding:8rem 2.5rem;
+  color:var(--black);position:relative;overflow:hidden;
+}
+.form-ghost{
+  position:absolute;right:-0.03em;top:50%;transform:translateY(-50%);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(7rem,18vw,16rem);
+  color:rgba(13,13,13,0.045);line-height:1;
+  pointer-events:none;white-space:nowrap;
+}
+.form-logo-bg{
+  position:absolute;bottom:-3rem;left:2rem;
+  width:clamp(150px,20vw,260px);
+  opacity:0.06;pointer-events:none;
+  filter:contrast(1.5);
+}
+.form-label-dark{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.62rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1.5rem;
+}
+.form-title-dark{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(3rem,9vw,7.5rem);
+  line-height:0.9;color:var(--black);margin-bottom:1rem;
+}
+.form-outline-dark{-webkit-text-stroke:2px var(--black);color:transparent}
+.form-sub{
+  font-size:0.95rem;color:rgba(13,13,13,0.48);
+  max-width:360px;line-height:1.75;margin-bottom:3rem;
+}
+.form-row{
+  display:flex;max-width:500px;
+  border:2px solid var(--black);
+}
+.form-row input{
+  flex:1;background:transparent;border:none;
+  padding:1.2rem 1.5rem;color:var(--black);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.9rem;letter-spacing:0.1em;outline:none;
+}
+.form-row input::placeholder{
+  color:rgba(13,13,13,0.3);text-transform:uppercase;
+  letter-spacing:0.2em;font-size:0.72rem;
+}
+.form-row button{
+  background:var(--black);border:none;
+  padding:1.2rem 2rem;color:var(--cream);
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;letter-spacing:0.15em;
+  cursor:pointer;transition:background 0.2s;white-space:nowrap;
+}
+.form-row button:hover{background:var(--red)}
+.form-fine{
+  margin-top:1.2rem;
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(13,13,13,0.28);
+}
+.success-wrap{display:none}
+.success-wrap.on{display:block}
+.success-wrap p{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,5vw,4rem);
+  color:var(--red);line-height:1.1;
+}
+
+footer{
+  background:var(--black);
+  border-top:1px solid rgba(240,232,216,0.07);
+  padding:2rem 2.5rem;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.footer-left{display:flex;align-items:center;gap:0.8rem}
+.footer-left img{
+  width:28px;height:28px;border-radius:50%;
+  object-fit:cover;opacity:0.6;filter:contrast(1.1);
+}
+.footer-logo-text{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1rem;letter-spacing:0.2em;color:var(--cream);
+}
+.footer-logo-text span{color:var(--red)}
+.footer-mid{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(240,232,216,0.2);text-align:center;
+}
+.footer-ig a{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(240,232,216,0.4);text-decoration:none;
+  border-bottom:1px solid rgba(240,232,216,0.15);padding-bottom:2px;
+  transition:color 0.2s,border-color 0.2s;
+}
+.footer-ig a:hover{color:var(--red);border-color:var(--red)}
+
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(max-width:1024px){
+  .hero{padding:4rem 2rem 2rem}
+  .hero-stats{gap:1.5rem}
+  .hero-logo-big{width:clamp(180px,22vw,300px);opacity:0.09}
+  .pillars-grid{grid-template-columns:1fr 1fr}
+  .pillar:nth-child(2){border-right:none}
+  .pillar:nth-child(3){grid-column:1/-1;border-right:none;border-top:1px solid rgba(240,232,216,0.08)}
+  .eventos-grid{grid-template-columns:1fr 1fr}
+  .evento:last-child{grid-column:1/-1}
+  .location{grid-template-columns:1fr;grid-template-rows:auto 55vw}
+  .horario{flex-wrap:wrap;gap:1.5rem}
+  .horario-item{border-right:none;padding-right:0}
+}
+@media(max-width:768px){
+  nav{padding:0.9rem 1.5rem}
+  .nav-links,.nav-badge{display:none}
+  .nav-logo img{height:42px;width:42px}
+  .hero{padding:3.5rem 1.5rem 2rem;min-height:auto}
+  .hero-content{padding-bottom:1.5rem}
+  .hero-stats{display:none}
+  .hero-logo-big{display:none}
+  .hero-eyebrow{margin-bottom:1rem}
+  .hero-bottom{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .hero-desc{max-width:100%;font-size:0.85rem}
+  .horario{flex-direction:column;gap:1rem;align-items:flex-start;padding:1.5rem}
+  .horario-item{border-right:none;padding-right:0;border-bottom:1px solid rgba(240,232,216,0.07);padding-bottom:1rem;width:100%}
+  .horario-item:last-child{border-bottom:none}
+  .horario-val{font-size:1.3rem}
+  .pillars-grid{grid-template-columns:1fr}
+  .pillar{border-right:none;border-bottom:1px solid rgba(240,232,216,0.08)}
+  .eventos-grid{grid-template-columns:1fr}
+  .location{grid-template-columns:1fr;grid-template-rows:auto 60vw}
+  .location-info{padding:3rem 1.5rem}
+  .manifesto{margin:4rem 1.5rem;padding-left:1rem}
+  .manifesto-text{font-size:clamp(1.8rem,7vw,3rem)}
+  .eventos{padding:0 1.5rem 4rem}
+  .eventos-header{flex-direction:column;align-items:flex-start;gap:1rem}
+  .form-section{padding:4rem 1.5rem}
+  .form-title-dark{font-size:clamp(2.5rem,12vw,5rem)}
+  footer{flex-direction:column;gap:1.2rem;text-align:center;padding:2rem 1.5rem}
+  .footer-left{justify-content:center}
+  .footer-ig{text-align:center}
+}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1775810537/STICKERS-08_chvfkc.png" alt="Secret Service" style="height:52px;width:52px;object-fit:contain;">
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about">El club</a></li>
+    <li><a href="#eventos">Eventos</a></li>
+    <li><a href="#location">Dónde</a></li>
+    <li><a href="#access">Acceso</a></li>
+  </ul>
+  <div class="nav-badge">Members Only · +18</div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-word">SECRET</div>
+  <img class="hero-logo-big" src="https://res.cloudinary.com/dcr3acidq/image/upload/v1775810537/STICKERS-13_xasrfb.png" alt="">
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-line"></div>
+      <span>Barcelona's Best Kept Secret · Eixample · 08009</span>
+    </div>
+    <img
+      src="https://res.cloudinary.com/dcr3acidq/image/upload/v1775810648/GRAFICAS_GENERAL-1_uf8ner.png"
+      alt="Secret Service"
+      style="width:clamp(340px,55vw,780px);max-width:100%;display:block;opacity:0;animation:slideUp 0.9s ease 0.3s forwards;"
+    />
+    <p style="font-family:'Barlow Condensed',sans-serif;font-size:0.72rem;letter-spacing:0.35em;text-transform:uppercase;color:#e8281e;margin-top:1.2rem;opacity:0;animation:fadeIn 0.7s ease 0.8s forwards;">Barcelona's Best Kept Secret · Eixample · 08009</p>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-desc">
+      <strong>No todo el mundo entiende los códigos.</strong><br>
+      Un espacio donde entras, desconectas y disfrutas del momento con gente que habla el mismo idioma.
+    </p>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">+64K</div>
+        <div class="stat-label">Seguidores</div>
+      </div>
+      <div>
+        <div class="stat-num">5.0</div>
+        <div class="stat-label">Google</div>
+      </div>
+      <div>
+        <div class="stat-num">+18</div>
+        <div class="stat-label">Members only</div>
+      </div>
+    </div>
+    <button class="hero-cta" onclick="document.getElementById('access').scrollIntoView({behavior:'smooth'})">
+      <span class="cta-text">Solicitar acceso</span>
+      <span class="cta-arrow">→</span>
+    </button>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="tick">SECRET SERVICE</span><span class="tick-dot">·</span>
+    <span class="tick">BARCELONA'S BEST KEPT SECRET</span><span class="tick-dot">·</span>
+    <span class="tick">PRIVATE SOCIAL CLUB</span><span class="tick-dot">·</span>
+    <span class="tick">LO QUE PASA AQUÍ SE QUEDA AQUÍ</span><span class="tick-dot">·</span>
+    <span class="tick">MEMBERS ONLY</span><span class="tick-dot">·</span>
+    <span class="tick">EIXAMPLE BCN</span><span class="tick-dot">·</span>
+    <span class="tick">SECRET SERVICE</span><span class="tick-dot">·</span>
+    <span class="tick">BARCELONA'S BEST KEPT SECRET</span><span class="tick-dot">·</span>
+    <span class="tick">PRIVATE SOCIAL CLUB</span><span class="tick-dot">·</span>
+    <span class="tick">LO QUE PASA AQUÍ SE QUEDA AQUÍ</span><span class="tick-dot">·</span>
+    <span class="tick">MEMBERS ONLY</span><span class="tick-dot">·</span>
+    <span class="tick">EIXAMPLE BCN</span><span class="tick-dot">·</span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<div class="manifesto reveal" id="about">
+  <p class="section-label">Manifiesto</p>
+  <p class="manifesto-text">
+    <span class="dim">ANTES ERA EL TÍPICO QUE</span><br>
+    BUSCABA UN SPOT<br>
+    <span class="dim">TRANQUILO. NUNCA HABÍA NINGUNO.</span><br>
+    ASÍ QUE LO CREÉ.
+  </p>
+</div>
+
+<!-- HORARIO -->
+<div class="horario reveal">
+  <div class="horario-item">
+    <span class="horario-key">Estado</span>
+    <span class="horario-val"><span class="horario-dot"></span><span class="accent">Abierto</span></span>
+  </div>
+  <div class="horario-item">
+    <span class="horario-key">Horario</span>
+    <span class="horario-val">12:00 – <span class="accent">22:00</span></span>
+  </div>
+  <div class="horario-item">
+    <span class="horario-key">Días</span>
+    <span class="horario-val">Todos los días</span>
+  </div>
+  <div class="horario-item">
+    <span class="horario-key">Acceso</span>
+    <span class="horario-val">Members Only · <span class="accent">+18</span></span>
+  </div>
+  <div class="horario-item">
+    <span class="horario-key">Ubicación</span>
+    <span class="horario-val">Eixample, <span class="accent">BCN</span></span>
+  </div>
+</div>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="pillars-grid">
+    <div class="pillar reveal">
+      <div class="pillar-num">01</div>
+      <h3>Exclusivo</h3>
+      <p>Acceso por solicitud. No es para todo el mundo — y eso es exactamente el punto. Una comunidad de más de 64.000 personas que ya lo saben.</p>
+    </div>
+    <div class="pillar reveal" style="transition-delay:0.1s">
+      <div class="pillar-num">02</div>
+      <h3>Sin poses</h3>
+      <p>Aquí dentro no hay tensión rara ni incomodidades innecesarias. Solo el momento y los que lo entienden. Secret Service no te da creatividad — la amplifica.</p>
+    </div>
+    <div class="pillar reveal" style="transition-delay:0.2s">
+      <div class="pillar-num">03</div>
+      <h3>Secreto</h3>
+      <p>Lo que pasa aquí, queda aquí. Siempre. Fuera… mejor que no lo sepan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTOS -->
+<section class="eventos reveal" id="eventos">
+  <div class="eventos-header">
+    <div>
+      <p class="section-label">Lo que pasa dentro</p>
+      <h2 class="eventos-title">EVENTOS<br><span class="outline">SECRETOS</span></h2>
+    </div>
+    <a class="eventos-ig" href="https://instagram.com/secretservicebcn" target="_blank">Ver en Instagram ↗</a>
+  </div>
+  <div class="eventos-grid">
+    <div class="evento reveal">
+      <div>
+        <p class="evento-tag">Recurrente · Sábados</p>
+        <h3 class="evento-title">CLUB DE DIBUJO</h3>
+        <p class="evento-desc">Live painting + dibujo libre para todos. Nosotros ponemos los materiales. Artistas invitados, mesa de stickers, y el ambiente lo pones tú.</p>
+      </div>
+      <div class="evento-footer">Próximo · Sábado 18HS</div>
+    </div>
+    <div class="evento reveal" style="transition-delay:0.1s">
+      <div>
+        <p class="evento-tag">Edición limitada</p>
+        <h3 class="evento-title">SECRET BOX</h3>
+        <p class="evento-desc">Hay algo dentro. No sabes qué es. Pero vas a querer adivinarlo. Pistas, misterio y un premio especial. Exclusivo para miembros.</p>
+      </div>
+      <div class="evento-footer">Solo para miembros · 17HS</div>
+    </div>
+    <div class="evento reveal" style="transition-delay:0.2s">
+      <div>
+        <p class="evento-tag">Cada semana</p>
+        <h3 class="evento-title">SÁBADOS SECRET</h3>
+        <p class="evento-desc">El encuentro semanal donde la comunidad se junta. Sin agenda fija, sin poses. Solo gente que habla el mismo idioma en el mejor spot de Barcelona.</p>
+      </div>
+      <div class="evento-footer">Abierto a miembros · 17HS</div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location reveal" id="location">
+  <div class="location-info">
+    <p class="section-label">Dónde encontrarnos</p>
+    <h2 class="location-title">EIXAMPLE,<br>BARCELONA</h2>
+    <div class="location-address">
+      <strong>Carrer de València, 342</strong>
+      Eixample · 08009 · Barcelona
+      <div class="info-pills">
+        <span class="pill hi">Members Only</span>
+        <span class="pill hi">+18</span>
+        <span class="pill">12:00 – 22:00</span>
+        <span class="pill">Todos los días</span>
+        <span class="pill">5.0 ★ Google</span>
+      </div>
+    </div>
+  </div>
+  <div class="map-wrap">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d109873.17842795038!2d2.057616841739407!3d41.39276731991188!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a4a34e12c47627%3A0xaf7f03b812d60182!2sSecret%20Service!5e1!3m2!1ses!2ses!4v1775722688199!5m2!1ses!2ses" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="map-tint"></div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="access">
+  <div class="form-ghost">ACCESS</div>
+  <img class="form-logo-bg" src="https://res.cloudinary.com/dcfao66yg/image/upload/v1775727328/589086078_17901360387338963_6888721536018123753_n_btm1vp.jpg" alt="">
+  <p class="form-label-dark reveal">Lista de espera</p>
+  <h2 class="form-title-dark reveal">¿HABLAS<br><span class="form-outline-dark">EL IDIOMA?</span></h2>
+  <p class="form-sub reveal">Deja tu email. Si encajas, te encontramos nosotros. Así de sencillo, así de secreto.</p>
+  <div id="form-wrap" class="reveal">
+    <div class="form-row">
+      <input type="email" id="email-in" placeholder="Tu email"/>
+      <button onclick="handleSubmit()">Entrar</button>
+    </div>
+    <p class="form-fine">Sin spam · Sin ruido · Solo cuando sea relevante</p>
+  </div>
+  <div class="success-wrap" id="success">
+    <p>SOLICITUD<br>RECIBIDA.<br><span style="-webkit-text-stroke:1.5px #0d0d0d;color:transparent">TE ENCONTRAMOS.</span></p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">
+    <img src="https://res.cloudinary.com/dcfao66yg/image/upload/v1775727328/589086078_17901360387338963_6888721536018123753_n_btm1vp.jpg" alt="Secret Service">
+    <div class="footer-logo-text">SECRET<span>®</span></div>
+  </div>
+  <div class="footer-mid">Private Social Club · Eixample · Barcelona · 08009 · © 2025</div>
+  <div class="footer-ig"><a href="https://instagram.com/secretservicebcn" target="_blank">@secretservicebcn ↗</a></div>
+</footer>
+
+<script>
+async function handleSubmit(){
+  const email=document.getElementById('email-in').value.trim();
+  if(!email||!email.includes('@'))return;
+
+  const btn=document.querySelector('#form-wrap button');
+  btn.textContent='...';
+  btn.disabled=true;
+
+  try{
+    const res=await fetch('/api/subscribe',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({email})
+    });
+    if(res.ok){
+      document.getElementById('form-wrap').style.display='none';
+      document.getElementById('success').classList.add('on');
+    } else {
+      btn.textContent='Entrar';
+      btn.disabled=false;
+      alert('Algo salió mal. Inténtalo de nuevo.');
+    }
+  } catch(e){
+    btn.textContent='Entrar';
+    btn.disabled=false;
+    alert('Error de conexión. Inténtalo de nuevo.');
+  }
+}
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+
+</body>
+</html>
