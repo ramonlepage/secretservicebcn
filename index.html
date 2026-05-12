@@ -902,6 +902,8 @@ function showClubContent(nombre){
 // Check session on load
 const savedMember=sessionStorage.getItem('ss_member');
 if(savedMember) showClubContent(savedMember);
+
+async function handleSubmit(){
   const email=document.getElementById('email-in').value.trim();
   if(!email||!email.includes('@'))return;
 
