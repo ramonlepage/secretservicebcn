@@ -21,7 +21,7 @@ body{
   font-family:'Barlow',sans-serif;
   font-weight:300;
   overflow-x:hidden;
-  cursor:url("https://res.cloudinary.com/dcr3acidq/image/upload/w_64,h_64/v1775832224/Generated_Image_April_10_2026_-_4_42PM_Background_Removed_brt5ox.png") 52 52, auto;
+  cursor:url("https://res.cloudinary.com/dcfao66yg/image/upload/w_64,h_64/v1775928805/76870d0a-cc1d-4501-8a68-4b8265594eaa_asmoyj.png") 32 32, auto;
 }
 
 nav{
@@ -411,7 +411,153 @@ footer{
 @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
 @keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
-.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.75s ease,transform 0.75s ease}
+/* CLUB ONLINE */
+.club-section{background:var(--black);border-top:1px solid rgba(240,232,216,0.08)}
+
+.club-gate{
+  min-height:80vh;display:flex;align-items:center;justify-content:center;
+  padding:4rem 2rem;
+}
+.club-gate-inner{max-width:480px;width:100%;text-align:center}
+.club-eyebrow{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.62rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1.5rem;
+}
+.club-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,12vw,9rem);line-height:0.88;margin-bottom:1.5rem;
+}
+.club-title-outline{-webkit-text-stroke:1.5px var(--cream);color:transparent}
+.club-desc{
+  font-size:0.85rem;color:rgba(240,232,216,0.45);
+  line-height:1.8;margin-bottom:2.5rem;
+}
+.club-form{display:flex;flex-direction:column;gap:0;max-width:380px;margin:0 auto 1rem;}
+.club-form input{
+  background:var(--mid);border:1px solid rgba(240,232,216,0.12);
+  border-bottom:none;
+  padding:1rem 1.5rem;color:var(--cream);
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.9rem;letter-spacing:0.1em;outline:none;
+  transition:border-color 0.2s;
+}
+.club-form input:first-child{border-radius:0}
+.club-form input:focus{border-color:rgba(240,232,216,0.3)}
+.club-form input::placeholder{
+  color:rgba(240,232,216,0.25);text-transform:uppercase;
+  letter-spacing:0.2em;font-size:0.72rem;
+}
+.club-form button{
+  background:var(--red);border:none;
+  padding:1rem 2rem;color:#fff;
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;letter-spacing:0.15em;
+  cursor:pointer;transition:background 0.2s;
+  border:1px solid var(--red);
+}
+.club-form button:hover{background:#c41f16}
+.club-note{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;
+  color:rgba(240,232,216,0.2);margin-top:1.5rem;
+}
+.club-error{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.8rem;letter-spacing:0.1em;
+  color:var(--red);margin-top:1rem;min-height:1.2rem;
+}
+
+.club-content{display:none;padding:4rem 2.5rem 6rem;}
+.club-content.visible{display:block}
+.club-content-header{
+  display:flex;justify-content:space-between;align-items:flex-end;
+  margin-bottom:3rem;padding-bottom:2rem;
+  border-bottom:1px solid rgba(240,232,216,0.08);
+}
+.club-content-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.5rem,6vw,5rem);line-height:0.95;
+}
+.club-red{color:var(--red)}
+.club-logout{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.65rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:rgba(240,232,216,0.35);background:none;border:none;
+  cursor:pointer;transition:color 0.2s;
+  border-bottom:1px solid rgba(240,232,216,0.15);padding-bottom:2px;
+}
+.club-logout:hover{color:var(--red)}
+
+.club-posters-section{margin-bottom:4rem}
+.club-posters-label{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.62rem;letter-spacing:0.4em;text-transform:uppercase;
+  color:var(--red);margin-bottom:2rem;
+}
+.club-posters-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:1rem;
+}
+.club-poster{
+  overflow:hidden;
+  border:1px solid rgba(240,232,216,0.07);
+  transition:transform 0.3s,border-color 0.3s;
+}
+.club-poster:hover{transform:scale(1.02);border-color:rgba(240,232,216,0.2)}
+.club-poster img{width:100%;height:100%;object-fit:cover;display:block}
+
+.club-ticker{
+  background:var(--red);padding:0.75rem 0;
+  overflow:hidden;white-space:nowrap;margin:0 -2.5rem 3rem;
+}
+.club-ticker-track{display:inline-flex;animation:ticker 20s linear infinite}
+.club-tick{
+  font-family:'Bebas Neue',sans-serif;font-size:1rem;
+  letter-spacing:0.2em;color:#fff;padding:0 2rem;
+}
+.club-dot{color:rgba(255,255,255,0.35);padding:0 0.4rem}
+
+.club-eventos-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:rgba(240,232,216,0.07);
+}
+.club-evento{
+  background:var(--black);padding:2.5rem;
+  position:relative;overflow:hidden;
+  transition:background 0.3s;
+}
+.club-evento::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:0;background:var(--red);
+  transition:height 0.4s;
+}
+.club-evento:hover::before{height:100%}
+.club-evento:hover{background:var(--mid)}
+.club-evento-dia{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:0.6rem;letter-spacing:0.35em;text-transform:uppercase;
+  color:var(--red);margin-bottom:1rem;
+}
+.club-evento-nombre{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:2rem;color:var(--cream);margin-bottom:0.8rem;line-height:1;
+}
+.club-evento-desc{
+  font-size:0.82rem;line-height:1.8;color:rgba(240,232,216,0.4);
+}
+
+@media(max-width:768px){
+  .club-content{padding:3rem 1.5rem 5rem}
+  .club-content-header{flex-direction:column;align-items:flex-start;gap:1.5rem}
+  .club-ticker{margin:0 -1.5rem 2rem}
+  .club-eventos-grid{grid-template-columns:1fr}
+  .club-posters-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+.reveal{opacity:1;transform:translateY(0);transition:opacity 0.75s ease,transform 0.75s ease}
+.reveal.will-animate{opacity:0;transform:translateY(22px)}
 .reveal.visible{opacity:1;transform:translateY(0)}
 
 @media(max-width:1024px){
@@ -426,6 +572,7 @@ footer{
   .location{grid-template-columns:1fr;grid-template-rows:auto 55vw}
   .horario{flex-wrap:wrap;gap:1.5rem}
   .horario-item{border-right:none;padding-right:0}
+  .club-posters-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:768px){
   nav{padding:0.9rem 1.5rem}
@@ -468,9 +615,9 @@ footer{
   </div>
   <ul class="nav-links">
     <li><a href="#about">El club</a></li>
-    <li><a href="#eventos">Eventos</a></li>
     <li><a href="#location">Dónde</a></li>
     <li><a href="#access">Acceso</a></li>
+    <li><a href="#club">Club</a></li>
   </ul>
   <div class="nav-badge">Members Only · +18</div>
 </nav>
@@ -591,43 +738,6 @@ footer{
   </div>
 </section>
 
-<!-- EVENTOS -->
-<section class="eventos reveal" id="eventos">
-  <div class="eventos-header">
-    <div>
-      <p class="section-label">Lo que pasa dentro</p>
-      <h2 class="eventos-title">EVENTOS<br><span class="outline">SECRETOS</span></h2>
-    </div>
-    <a class="eventos-ig" href="https://instagram.com/secretservicebcn" target="_blank">Ver en Instagram ↗</a>
-  </div>
-  <div class="eventos-grid">
-    <div class="evento reveal">
-      <div>
-        <p class="evento-tag">Recurrente · Sábados</p>
-        <h3 class="evento-title">CLUB DE DIBUJO</h3>
-        <p class="evento-desc">Live painting + dibujo libre para todos. Nosotros ponemos los materiales. Artistas invitados, mesa de stickers, y el ambiente lo pones tú.</p>
-      </div>
-      <div class="evento-footer">Próximo · Sábado 18HS</div>
-    </div>
-    <div class="evento reveal" style="transition-delay:0.1s">
-      <div>
-        <p class="evento-tag">Edición limitada</p>
-        <h3 class="evento-title">SECRET BOX</h3>
-        <p class="evento-desc">Hay algo dentro. No sabes qué es. Pero vas a querer adivinarlo. Pistas, misterio y un premio especial. Exclusivo para miembros.</p>
-      </div>
-      <div class="evento-footer">Solo para miembros · 17HS</div>
-    </div>
-    <div class="evento reveal" style="transition-delay:0.2s">
-      <div>
-        <p class="evento-tag">Cada semana</p>
-        <h3 class="evento-title">SÁBADOS SECRET</h3>
-        <p class="evento-desc">El encuentro semanal donde la comunidad se junta. Sin agenda fija, sin poses. Solo gente que habla el mismo idioma en el mejor spot de Barcelona.</p>
-      </div>
-      <div class="evento-footer">Abierto a miembros · 17HS</div>
-    </div>
-  </div>
-</section>
-
 <!-- LOCATION -->
 <section class="location reveal" id="location">
   <div class="location-info">
@@ -670,6 +780,73 @@ footer{
   </div>
 </section>
 
+<!-- CLUB ONLINE -->
+<section class="club-section" id="club">
+  <!-- GATE — login -->
+  <div class="club-gate" id="club-gate">
+    <div class="club-gate-inner">
+      <p class="club-eyebrow">Acceso restringido</p>
+      <h2 class="club-title">CLUB<br><span class="club-title-outline">ONLINE</span></h2>
+      <p class="club-desc">Contenido exclusivo para miembros activos.<br>Introduce tus credenciales para entrar.</p>
+      <div class="club-form">
+        <input type="text" id="club-usuario" placeholder="Usuario" autocomplete="off" autocorrect="off" autocapitalize="off"/>
+        <input type="password" id="club-codigo" placeholder="Código secreto" autocomplete="off"/>
+        <button onclick="handleLogin()">ENTRAR</button>
+      </div>
+      <p class="club-note">Credenciales entregadas presencialmente en el local.</p>
+      <p id="club-error" class="club-error"></p>
+    </div>
+  </div>
+
+  <!-- CONTENIDO — visible tras login -->
+  <div class="club-content" id="club-content">
+    <div class="club-content-header">
+      <div>
+        <p class="club-eyebrow">Club Online</p>
+        <h2 class="club-content-title">BIENVENIDO,<br><span id="club-nombre" class="club-red"></span></h2>
+      </div>
+      <button class="club-logout" onclick="handleLogout()">Cerrar sesión</button>
+    </div>
+
+    <div class="club-ticker">
+      <div class="club-ticker-track">
+        <span class="club-tick">MUNCHIES DAY · MARTES</span><span class="club-dot">·</span>
+        <span class="club-tick">DAB DAY · SÁBADO</span><span class="club-dot">·</span>
+        <span class="club-tick">HAPPY HOUR 3X2 · DOMINGO</span><span class="club-dot">·</span>
+        <span class="club-tick">4:20 TE REGALAMOS 2G</span><span class="club-dot">·</span>
+        <span class="club-tick">EARLY BIRD · PRIMEROS 3 SOCIOS</span><span class="club-dot">·</span>
+        <span class="club-tick">MUNCHIES DAY · MARTES</span><span class="club-dot">·</span>
+        <span class="club-tick">DAB DAY · SÁBADO</span><span class="club-dot">·</span>
+        <span class="club-tick">HAPPY HOUR 3X2 · DOMINGO</span><span class="club-dot">·</span>
+        <span class="club-tick">4:20 TE REGALAMOS 2G</span><span class="club-dot">·</span>
+        <span class="club-tick">EARLY BIRD · PRIMEROS 3 SOCIOS</span><span class="club-dot">·</span>
+      </div>
+    </div>
+
+    <div class="club-posters-section">
+      <p class="club-posters-label">Programación semanal</p>
+      <div class="club-posters-grid">
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606838/POSTERS_SEMANALES_A4-1_m5jil3.png" alt="Evento 1" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606841/POSTERS_SEMANALES_A4-2_blaskq.png" alt="Evento 2" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606987/POSTERS_SEMANALES_A4-3_z4msaj.png" alt="Evento 3" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606838/POSTERS_SEMANALES_A4-4_taoltn.png" alt="Evento 4" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606839/POSTERS_SEMANALES_A4-5_cccmsx.png" alt="Evento 5" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606839/POSTERS_SEMANALES_A4-6_w17lka.png" alt="Evento 6" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606840/POSTERS_SEMANALES_A4-7_f6ld0e.png" alt="Evento 7" loading="lazy"/></div>
+      </div>
+    </div>
+
+    <div class="club-posters-section">
+      <p class="club-posters-label">Promos activas</p>
+      <div class="club-posters-grid">
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606840/POSTERS_SEMANALES_A4-9_o46b8r.png" alt="Promo 1" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606840/POSTERS_SEMANALES_A4-10_q6xdih.png" alt="Promo 2" loading="lazy"/></div>
+        <div class="club-poster"><img src="https://res.cloudinary.com/dcr3acidq/image/upload/v1778606839/POSTERS_SEMANALES_A4-8_v9ye5z.png" alt="Promo 3" loading="lazy"/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="footer-left">
     <img src="https://res.cloudinary.com/dcfao66yg/image/upload/v1775727328/589086078_17901360387338963_6888721536018123753_n_btm1vp.jpg" alt="Secret Service">
@@ -680,7 +857,51 @@ footer{
 </footer>
 
 <script>
-async function handleSubmit(){
+async function handleLogin(){
+  const usuario=document.getElementById('club-usuario').value.trim();
+  const codigo=document.getElementById('club-codigo').value.trim();
+  const btn=document.querySelector('.club-form button');
+  const err=document.getElementById('club-error');
+  if(!usuario||!codigo){err.textContent='Introduce usuario y código.';return;}
+  btn.textContent='...';btn.disabled=true;err.textContent='';
+  try{
+    const r=await fetch('/api/login',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({usuario,codigo})
+    });
+    const data=await r.json();
+    if(r.ok&&data.ok){
+      sessionStorage.setItem('ss_member',data.nombre);
+      showClubContent(data.nombre);
+    } else {
+      err.textContent='Credenciales incorrectas. Inténtalo de nuevo.';
+      btn.textContent='ENTRAR';btn.disabled=false;
+    }
+  } catch(e){
+    err.textContent='Error de conexión.';
+    btn.textContent='ENTRAR';btn.disabled=false;
+  }
+}
+
+function handleLogout(){
+  sessionStorage.removeItem('ss_member');
+  document.getElementById('club-gate').style.display='flex';
+  document.getElementById('club-content').classList.remove('visible');
+  document.getElementById('club-usuario').value='';
+  document.getElementById('club-codigo').value='';
+}
+
+function showClubContent(nombre){
+  document.getElementById('club-gate').style.display='none';
+  document.getElementById('club-nombre').textContent=nombre.toUpperCase();
+  document.getElementById('club-content').classList.add('visible');
+  document.getElementById('club').scrollIntoView({behavior:'smooth'});
+}
+
+// Check session on load
+const savedMember=sessionStorage.getItem('ss_member');
+if(savedMember) showClubContent(savedMember);
   const email=document.getElementById('email-in').value.trim();
   if(!email||!email.includes('@'))return;
 
@@ -708,10 +929,14 @@ async function handleSubmit(){
     alert('Error de conexión. Inténtalo de nuevo.');
   }
 }
-const obs=new IntersectionObserver(es=>{
-  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
-},{threshold:0.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+// Solo añade animación si no es file:// (producción)
+if(window.location.protocol !== 'file:'){
+  document.querySelectorAll('.reveal').forEach(el=>el.classList.add('will-animate'));
+  const obs=new IntersectionObserver(es=>{
+    es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+  },{threshold:0.01,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
 </script>
 
 </body>
