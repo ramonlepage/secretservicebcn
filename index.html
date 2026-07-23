@@ -73,12 +73,12 @@ nav{
   letter-spacing:-0.02em;white-space:nowrap;
 }
 .hero-logo-big{
-  position:absolute;top:50%;right:5%;
-  transform:translateY(-55%);
-  width:clamp(200px,28vw,380px);
-  opacity:0.12;
+  position:absolute;top:50%;right:4%;
+  transform:translateY(-52%) rotate(3deg);
+  width:clamp(240px,32vw,460px);
+  opacity:0.15;
   pointer-events:none;
-  filter:contrast(1.2) brightness(1.1);
+  filter:invert(0.92) sepia(0.08);
 }
 .hero-content{display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:3rem}
 .hero-eyebrow{
@@ -489,6 +489,72 @@ footer{
 }
 .club-logout:hover{color:var(--red)}
 
+/* ═══ STICKER AESTHETIC ═══ */
+.manifesto-sticker{
+  position:absolute;
+  right:-2rem;top:-3rem;
+  width:clamp(140px,16vw,220px);
+  transform:rotate(8deg);
+  filter:drop-shadow(0 8px 20px rgba(0,0,0,0.6));
+  pointer-events:none;
+  z-index:2;
+}
+.manifesto{position:relative}
+
+.pillar-char{
+  width:90px;height:90px;
+  object-fit:contain;
+  margin-bottom:1.5rem;
+  transform:rotate(var(--rot,0deg));
+  filter:invert(0.92) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  transition:transform 0.3s;
+}
+.pillar:hover .pillar-char{transform:rotate(var(--rot,0deg)) scale(1.08)}
+
+.location-sticker{
+  position:absolute;
+  top:2rem;right:2rem;
+  width:clamp(100px,12vw,160px);
+  transform:rotate(-6deg);
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,0.5));
+  pointer-events:none;
+}
+.location-info{position:relative}
+
+.gate-sticker{
+  width:clamp(160px,22vw,240px);
+  margin:0 auto 2rem;
+  display:block;
+  transform:rotate(-3deg);
+  filter:drop-shadow(0 10px 30px rgba(232,40,30,0.25));
+  animation:stickerFloat 4s ease-in-out infinite;
+}
+@keyframes stickerFloat{
+  0%,100%{transform:rotate(-3deg) translateY(0)}
+  50%{transform:rotate(-2deg) translateY(-8px)}
+}
+
+.content-sticker{
+  width:clamp(90px,11vw,140px);
+  transform:rotate(6deg);
+  filter:drop-shadow(0 6px 16px rgba(0,0,0,0.5));
+}
+
+.footer-sticker{
+  width:80px;
+  display:block;
+  margin:0 auto 0.8rem;
+  transform:rotate(-2deg);
+  opacity:0.85;
+}
+
+@media(max-width:768px){
+  .manifesto-sticker{width:110px;right:-0.5rem;top:-2.5rem}
+  .location-sticker{width:90px;top:1rem;right:1rem}
+  .content-sticker{display:none}
+  .pillar-char{width:70px;height:70px}
+}
+
 .club-posters-section{margin-bottom:4rem}
 .club-posters-label{
   font-family:'Barlow Condensed',sans-serif;
@@ -625,7 +691,7 @@ footer{
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg-word">SECRET</div>
-  <img class="hero-logo-big" src="https://res.cloudinary.com/dcr3acidq/image/upload/v1775810537/STICKERS-13_xasrfb.png" alt="">
+  <img class="hero-logo-big" src="assets/char-smoking.png" alt="">
   <div class="hero-content">
     <div class="hero-eyebrow">
       <div class="hero-eyebrow-line"></div>
@@ -684,6 +750,7 @@ footer{
 
 <!-- MANIFESTO -->
 <div class="manifesto reveal" id="about">
+  <img class="manifesto-sticker" src="assets/sticker-hash.png" alt="I love hash"/>
   <p class="section-label">Manifiesto</p>
   <p class="manifesto-text">
     <span class="dim">ANTES ERA EL TÍPICO QUE</span><br>
@@ -721,17 +788,17 @@ footer{
 <section class="pillars">
   <div class="pillars-grid">
     <div class="pillar reveal">
-      <div class="pillar-num">01</div>
+      <img class="pillar-char" src="assets/char-smoking.png" alt="" style="--rot:-4deg"/>
       <h3>Exclusivo</h3>
       <p>Acceso por solicitud. No es para todo el mundo — y eso es exactamente el punto. Una comunidad de más de 64.000 personas que ya lo saben.</p>
     </div>
     <div class="pillar reveal" style="transition-delay:0.1s">
-      <div class="pillar-num">02</div>
+      <img class="pillar-char" src="assets/char-smiling.png" alt="" style="--rot:3deg"/>
       <h3>Sin poses</h3>
       <p>Aquí dentro no hay tensión rara ni incomodidades innecesarias. Solo el momento y los que lo entienden. Secret Service no te da creatividad — la amplifica.</p>
     </div>
     <div class="pillar reveal" style="transition-delay:0.2s">
-      <div class="pillar-num">03</div>
+      <img class="pillar-char" src="assets/char-glasses.png" alt="" style="--rot:-2deg"/>
       <h3>Secreto</h3>
       <p>Lo que pasa aquí, queda aquí. Siempre. Fuera… mejor que no lo sepan.</p>
     </div>
@@ -741,6 +808,7 @@ footer{
 <!-- LOCATION -->
 <section class="location reveal" id="location">
   <div class="location-info">
+    <img class="location-sticker" src="assets/sticker-bbks-char.png" alt="Barcelona's Best Kept Secret"/>
     <p class="section-label">Dónde encontrarnos</p>
     <h2 class="location-title">EIXAMPLE,<br>BARCELONA</h2>
     <div class="location-address">
@@ -785,6 +853,7 @@ footer{
   <!-- GATE — login -->
   <div class="club-gate" id="club-gate">
     <div class="club-gate-inner">
+      <img class="gate-sticker" src="assets/sticker-secret-inside.png" alt="Secret Inside"/>
       <p class="club-eyebrow">Acceso restringido</p>
       <h2 class="club-title">CLUB<br><span class="club-title-outline">ONLINE</span></h2>
       <p class="club-desc">Contenido exclusivo para miembros activos.<br>Introduce tus credenciales para entrar.</p>
@@ -805,6 +874,7 @@ footer{
         <p class="club-eyebrow">Club Online</p>
         <h2 class="club-content-title">BIENVENIDO,<br><span id="club-nombre" class="club-red"></span></h2>
       </div>
+      <img class="content-sticker" src="assets/sticker-fun-bad.png" alt="It's fun to be bad"/>
       <button class="club-logout" onclick="handleLogout()">Cerrar sesión</button>
     </div>
 
@@ -852,7 +922,10 @@ footer{
     <img src="https://res.cloudinary.com/dcfao66yg/image/upload/v1775727328/589086078_17901360387338963_6888721536018123753_n_btm1vp.jpg" alt="Secret Service">
     <div class="footer-logo-text">SECRET<span>®</span></div>
   </div>
-  <div class="footer-mid">Private Social Club · Eixample · Barcelona · 08009 · © 2025</div>
+  <div class="footer-mid">
+    <img class="footer-sticker" src="assets/sticker-love-secret.png" alt="I love Secret"/>
+    <div>Private Social Club · Eixample · Barcelona · 08009 · © 2025</div>
+  </div>
   <div class="footer-ig"><a href="https://instagram.com/secretservicebcn" target="_blank">@secretservicebcn ↗</a></div>
 </footer>
 
